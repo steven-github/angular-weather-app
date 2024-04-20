@@ -69,7 +69,7 @@ export class WeatherComponent implements OnInit {
   }
 
   parseForecastData(): void {
-    // Assuming the data structure, parse the necessary data for the chart
+    console.log('this.forecastData', this.forecastData);
     this.chartData = [
       {
         data: this.forecastData.properties.periods.map(
