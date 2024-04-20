@@ -1,0 +1,36 @@
+<div *ngIf="forecastData">
+  <div>
+    <!-- <canvas baseChart
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [options]="chartOptions"
+        [colors]="chartColors"
+        [legend]="true"
+        [chartType]="chartType">
+      </canvas> -->
+    <canvas
+      baseChart
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true"
+    >
+    </canvas>
+    <!-- <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+    >
+    </canvas> -->
+    <!-- <canvas
+      baseChart
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [legend]="lineChartLegend"
+    >
+    </canvas> -->
+  </div>
+</div>
