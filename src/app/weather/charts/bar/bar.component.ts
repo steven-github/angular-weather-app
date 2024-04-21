@@ -12,6 +12,13 @@ export class BarComponent {
   chartLabels: any[] = [];
   chartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    onResize: (chart: any, size: any) => {
+      console.log(chart, size);
+      chart.canvas.width = size.width;
+      chart.canvas.height = size.height;
+      chart.update();
+    },
     scales: {
       x: {
         type: 'category',

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChartConfiguration, ChartEvent, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-line-chart',
@@ -22,7 +22,14 @@ export class LineComponent {
     ],
   };
   lineChartOptions: ChartOptions<'line'> = {
-    responsive: false,
+    responsive: true,
+    maintainAspectRatio: false,
+    onResize: (chart: any, size: any) => {
+      console.log(chart, size);
+      chart.canvas.width = size.width;
+      chart.canvas.height = size.height;
+      chart.update();
+    },
     plugins: {
       tooltip: {
         callbacks: {

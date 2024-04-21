@@ -1,8 +1,11 @@
-<canvas
-  baseChart
-  [datasets]="chartData"
-  [labels]="chartLabels"
-  [options]="chartOptions"
-  [legend]="true"
->
-</canvas>
+<div class="chart-container">
+  <canvas
+    baseChart
+    [datasets]="chartData"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    [legend]="true"
+    height="400"
+    width="100vw"
+  ></canvas>
+</div>
