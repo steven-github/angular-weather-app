@@ -10,8 +10,6 @@ export class WeatherApiService {
 
   getForecast(location: string): Observable<any> {
     const apiUrl = `https://api.weather.gov/gridpoints/${location}/31,80/forecast`;
-    const apiUrl2 = `https://api.weather.gov/gridpoints/${location}/31,80/forecast`;
-    const apiUrl3 = `https://api.weather.gov/gridpoints/${location}/31,80/forecast`;
     return this.http.get(apiUrl);
   }
 }

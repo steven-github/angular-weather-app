@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherApiService } from '../weather-api.service';
-import { ChartConfiguration, ChartOptions, ChartDataset } from 'chart.js';
 
 @Component({
   selector: 'app-weather',
@@ -10,12 +9,14 @@ import { ChartConfiguration, ChartOptions, ChartDataset } from 'chart.js';
 })
 export class WeatherComponent implements OnInit {
   location: string = '';
-  forecastData: any;
+  forecastData: any = null;
 
   constructor(
     private route: ActivatedRoute,
     private weatherApi: WeatherApiService
-  ) {}
+  ) {
+    this.forecastData = null;
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -25,6 +26,7 @@ export class WeatherComponent implements OnInit {
   }
 
   fetchForecast(): void {
+    this.forecastData = null;
     this.weatherApi.getForecast(this.location).subscribe((data: any) => {
       this.forecastData = data.properties.periods;
     });

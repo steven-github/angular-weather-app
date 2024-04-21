@@ -4,8 +4,9 @@ import { HomeComponent } from './home/home.component';
 import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/weather/LWX', pathMatch: 'full' },
   { path: 'weather/:location', component: WeatherComponent },
+  { path: '**', redirectTo: '/weather/LWX' },
 ];
 
 @NgModule({
