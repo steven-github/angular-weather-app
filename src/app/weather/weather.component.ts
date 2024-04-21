@@ -28,7 +28,9 @@ export class WeatherComponent implements OnInit {
   fetchForecast(): void {
     this.forecastData = null;
     this.weatherApi.getForecast(this.location).subscribe((data: any) => {
-      this.forecastData = data.properties.periods;
+      setTimeout(() => {
+        this.forecastData = data.properties.periods;
+      }, 500);
     });
   }
 }
