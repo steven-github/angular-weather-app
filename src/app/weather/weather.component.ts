@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherApiService } from '../weather-api.service';
-import { ChartDataset, ChartOptions } from 'chart.js';
-import { HttpClient } from '@angular/common/http';
-// import { Color, Label } from 'ng2-charts';
+import { ChartConfiguration, ChartOptions, ChartDataset } from 'chart.js';
 
 @Component({
   selector: 'app-weather',
@@ -11,42 +9,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit {
-  location: string = 'LWX';
+  location: string = '';
   forecastData: any;
-  chartData: ChartDataset[] = [];
-  chartLabels: any[] = [];
-  chartOptions: ChartOptions = {
-    responsive: true,
-    // scales: {
-    //   xAxes: [
-    //     {
-    //       scaleLabel: {
-    //         display: true,
-    //         labelString: 'Time',
-    //       },
-    //     },
-    //   ],
-    //   yAxes: [
-    //     {
-    //       scaleLabel: {
-    //         display: true,
-    //         labelString: 'Temperature (°F)',
-    //       },
-    //     },
-    //   ],
-    // },
-    // tooltips: {
-    //   mode: 'index',
-    //   intersect: false,
-    // },
-  };
-  chartColors: any[] = [
-    {
-      borderColor: 'rgba(75,192,192,1)',
-      backgroundColor: 'rgba(75,192,192,0.2)',
-    },
-  ];
-  // chartType = 'line';
 
   constructor(
     private route: ActivatedRoute,
@@ -62,24 +26,7 @@ export class WeatherComponent implements OnInit {
 
   fetchForecast(): void {
     this.weatherApi.getForecast(this.location).subscribe((data: any) => {
-      this.forecastData = data;
-      this.parseForecastData();
-      console.log('this.forecastData', this.forecastData);
+      this.forecastData = data.properties.periods;
     });
-  }
-
-  parseForecastData(): void {
-    console.log('this.forecastData', this.forecastData);
-    this.chartData = [
-      {
-        data: this.forecastData.properties.periods.map(
-          (period: any) => period.temperature
-        ),
-        label: 'Temperature',
-      },
-    ];
-    this.chartLabels = this.forecastData.properties.periods.map(
-      (period: any) => period.name
-    );
   }
 }
